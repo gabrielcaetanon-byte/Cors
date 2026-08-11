@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Teste de CORS</title>
+</head>
+<body>
+
+    <button id="btnCor">Mudar Cor do Card</button>
+    <div id="card" style="width: 100px; height: 100px; background-color: gray; margin-top: 10px;"></div>
+
+    <script>
+        document.getElementById('btnCor').addEventListener('click', () => {
+            // Esse fetch vai chamar a API que está rodando no seu computador
+            fetch('http://localhost:3000/api/cor')
+                .then(res => res.json())
+                .then(dados => {
+                    // Muda a cor do quadrado com o dado que veio da API
+                    document.getElementById('card').style.backgroundColor = dados.cor;
+                })
+                .catch(err => console.error('Erro de CORS ou conexão:', err));
+        });
+    </script>
+
+</body>
+</html>
